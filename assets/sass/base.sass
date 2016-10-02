@@ -1,0 +1,29 @@
+@import 'var'
+
+body
+  font-family: 'PT Sans', sans-serif
+  font-size: 13px
+  background-color: darken($white, 2.5%)
+  color: $black
+
+.ju
+  box-sizing: border-box
+
+  &.headline
+    display: block
+    font-size: 1.75em
+    font-weight: 700
+    text-transform: uppercase
+    margin: 0.25em auto
+
+  &.paragraph
+    display: block
+    margin: 0.1em auto
+
+  &.code
+    font-family: Consolas, monospace
+
+  // TODO: Move to standalone rule file
+  &.disclaimer
+    display: block
+    margin: 25px

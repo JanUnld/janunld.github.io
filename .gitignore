@@ -1,0 +1,9 @@
+# Ignore dependency related data
+#assets/bower_components/
+**/node_modules/
+
+# Ignore log and report data
+**/*.log
+**/*.report
+**/report/
+**/log/
