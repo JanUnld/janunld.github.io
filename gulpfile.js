@@ -1,8 +1,9 @@
 #!/bin/env node
 
 // Gulp dependencies:
-const gulp    = require('gulp'),
-      plugins = require('gulp-load-plugins')();
+const gulp     = require('gulp'),
+      plugins  = require('gulp-load-plugins')(),
+      sequence = plugins['sequence'];
 // Node dependencies:
 const path = require('path');
 
@@ -35,24 +36,18 @@ const path = require('path');
         .pipe(gulp.dest(sass.destination.base));
 
     });
+    // Invokes the default task chain for building the sass files
+    gulp.task('sass-build:*', sequence('sass-build-clean', 'sass-build'));
 
-  }(config.sass);
+    // Watches any changes to sass files
+    gulp.task('sass-watch', function() {
 
-  /**
-   * BOWER:
-   */
-  !function(bower) {
-
-    // Invokes a job to automatically wire all installed
-    // dependencies into the marked areas of the index DOM
-    gulp.task('bower-wire', function() {
-
-      return gulp.src([ path.join(bower.source.base, bower.source.filename) ])
-        .pipe(plugins['wiredep']())
-        .pipe(gulp.dest(bower.source.base));
+      return gulp.watch([
+        path.join(sass.source.base, '**/*.sass')
+      ], [ 'sass-build:*' ]);
 
     });
 
-  }(config.bower);
+  }(config.sass);
 
 }(require('./config/gulp.conf'));
