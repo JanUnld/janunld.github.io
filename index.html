@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 
-<html>
+<html ng-app="applet">
 <head>
-
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
   <meta name="author" content="Jan Unnold">
@@ -10,25 +9,56 @@
 
   <title>Jan Unld</title>
 
-
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,700" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
   <link rel="stylesheet" href="https://cdn.materialdesignicons.com/1.1.34/css/materialdesignicons.min.css" />
   <link rel="stylesheet" href="assets/css/janunld-github-io.min.css" />
 
+  <base />
 </head>
 <body>
 
-  <div class="ju disclaimer">
-    <h1 class="ju headline">102 Processing ...</h1>
-    <p class="ju paragraph">
-      This github pages website is currently under construction.
-    </p>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+
+        <div class="ju profile">
+          <div class="ju profile-cover"></div>
+          <div class="ju profile-head">
+            <div class="ju profile-avatar" data-toggle="tooltip" data-title="{{ $my.bio }}" data-placement="top">
+              <img class="ju profile-avatar-image" ng-src="{{ $my.avatar_url }}" ng-cloak alt="">
+            </div>
+            <div class="ju profile-info">
+              <div class="ju profile-identity">
+                <span class="ju profile-name" ng-bind="$my.name"></span>
+                <a class="ju profile-login" ng-href="{{ $my.html_url }}" ng-bind="$my.login"></a>
+              </div>
+              <div class="ju profile-stats text-right">
+                <span class="ju profile-stats-label label-hidden pull-left" data-title="Location" ng-bind="$my.location"></span>
+                <span class="ju profile-stats-label" data-title="Followers" ng-bind="$my.followers"></span>
+                <span class="ju profile-stats-label" data-title="Repos" ng-bind="$my.public_repos"></span>
+              </div>
+            </div>
+          </div>
+          <div class="ju profile-body">
+
+            <h4 class="ju headline">Hey there</h4>
+            <p class="ju paragraph">
+              This github pages website is currently under construction. Stay tuned <i class="mdi mdi-heart"></i>.
+            </p>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="applet/index.js"></script>
 
 </body>
 </html>

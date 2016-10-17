@@ -3,15 +3,14 @@
 body
   font-family: 'PT Sans', sans-serif
   font-size: 13px
-  background-color: darken($white, 2.5%)
-  color: $black
+  background-color: lighten($black, 10%)
+  color: $white
 
 .ju
   box-sizing: border-box
 
   &.headline
     display: block
-    font-size: 1.75em
     font-weight: 700
     text-transform: uppercase
     margin: 0.25em auto
@@ -27,3 +26,7 @@ body
   &.disclaimer
     display: block
     margin: 25px
+
+.mdi
+  &.mdi-heart
+    color: $red

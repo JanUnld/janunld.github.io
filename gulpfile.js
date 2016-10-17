@@ -37,7 +37,9 @@ const path = require('path');
 
     });
     // Invokes the default task chain for building the sass files
-    gulp.task('sass-build:*', sequence('sass-build-clean', 'sass-build'));
+    gulp.task('sass-build:*', function(cb) {
+      return sequence('sass-build-clean', 'sass-build', cb);
+    });
 
     // Watches any changes to sass files
     gulp.task('sass-watch', function() {
