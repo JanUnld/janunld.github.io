@@ -1,0 +1,44 @@
+@import 'var'
+
+$loader-size: 30px
+
+.ju.loader
+  position: relative
+  display: inline-block
+
+  &.loader-center
+    position: absolute
+    transform: translate(-50%)
+    left: 50%
+    top: 50%
+
+  &:before,
+  &:after
+    content: ''
+    display: inline-block
+    position: absolute
+    border-radius: 50%
+    width: $loader-size
+    height: $loader-size
+    background-color: $white
+
+  &:before
+    animation-delay: .4s
+    animation: loading_inner 1s infinite ease-out
+    opacity: .75
+  &:after
+    animation-delay: .25s
+    animation: loading_outer 1s infinite ease-in-out
+    opacity: .25
+
+@keyframes loading_inner
+  0%, 100%
+    transform: scale(0)
+  50%
+    transform: scale(.25)
+
+@keyframes loading_outer
+  0%, 100%
+    transform: scale(0)
+  50%
+    transform: scale(.7)

@@ -25,8 +25,10 @@
 
         <div class="ju profile">
           <div class="ju profile-cover"></div>
-          <div class="ju profile-head">
-            <div class="ju profile-avatar" data-toggle="tooltip" data-title="{{ $my.bio }}" data-placement="top">
+          <div class="ju loader loader-center" ng-if="loading.userData"></div>
+
+          <div class="ju profile-head" ng-cloak ng-hide="loading.userData">
+            <div class="ju profile-avatar">
               <img class="ju profile-avatar-image" ng-src="{{ $my.avatar_url }}" ng-cloak alt="">
             </div>
             <div class="ju profile-info">
@@ -41,7 +43,7 @@
               </div>
             </div>
           </div>
-          <div class="ju profile-body">
+          <div class="ju profile-body" ng-cloak ng-hide="loading.userData">
 
             <h4 class="ju headline">Hey there</h4>
             <p class="ju paragraph">
