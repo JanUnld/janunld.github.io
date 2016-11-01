@@ -24,8 +24,9 @@
       <div class="col-md-6 col-md-offset-3">
 
         <div class="ju profile">
-          <div class="ju profile-cover"></div>
-          <div class="ju loader loader-center" ng-if="loading.userData"></div>
+          <div class="ju profile-cover">
+            <div class="ju loader loader-center loader-backdrop" ng-if="loading.userData"></div>
+          </div>
 
           <div class="ju profile-head" ng-cloak ng-hide="loading.userData">
             <div class="ju profile-avatar">
@@ -48,6 +49,10 @@
             <h4 class="ju headline">Hey there</h4>
             <p class="ju paragraph">
               This github pages website is currently under construction. Stay tuned <i class="mdi mdi-heart"></i>.
+            </p>
+
+            <p class="ju paragraph text-center">
+              <i class="mdi mdi-chevron-down"></i>
             </p>
 
           </div>

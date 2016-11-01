@@ -1,6 +1,7 @@
 @import 'var'
 
-$loader-size: 30px
+$loader-radius   : 12px
+$loader-thickness: 4px
 
 .ju.loader
   position: relative
@@ -12,33 +13,31 @@ $loader-size: 30px
     left: 50%
     top: 50%
 
-  &:before,
-  &:after
+  &:before
     content: ''
     display: inline-block
-    position: absolute
-    border-radius: 50%
-    width: $loader-size
-    height: $loader-size
-    background-color: $white
+    height: $loader-radius * 2
+    width: $loader-radius * 2
+    // Appearance related rules
+    border-radius: 50% !important
+    border: $loader-thickness solid transparent
+    border-right-color: $white
+    animation: loading .75s infinite linear
+  // Adds a backdrop to the loader pseudo element
+  &.loader-backdrop:before
+    background-color: rgba($black, .25)
+    box-shadow: 0 0 0 $loader-thickness rgba($black, .25)
 
-  &:before
-    animation-delay: .4s
-    animation: loading_inner 1s infinite ease-out
-    opacity: .75
-  &:after
-    animation-delay: .25s
-    animation: loading_outer 1s infinite ease-in-out
-    opacity: .25
+  // Inverted rules
+  &.loader-inverse
+    &:before
+      border-right-color: $black
+    &.loader-backdrop:before
+      background-color: rgba($white, .25)
+      box-shadow: 0 0 0 $loader-thickness rgba($white, .25)
 
-@keyframes loading_inner
-  0%, 100%
-    transform: scale(0)
-  50%
-    transform: scale(.25)
-
-@keyframes loading_outer
-  0%, 100%
-    transform: scale(0)
-  50%
-    transform: scale(.7)
+@keyframes loading
+  0%
+    transform: rotate(0deg)
+  100%
+    transform: rotate(360deg)
