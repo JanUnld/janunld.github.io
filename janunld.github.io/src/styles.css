@@ -3,6 +3,8 @@
 @tailwind utilities;
 
 html, body {
+  @apply bg-slate-100;
+
   display: block;
   height: 100%;
 }

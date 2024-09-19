@@ -23,6 +23,9 @@ export default defineConfig(({ mode }) => {
     plugins: [
       analog({
         static: true,
+        content: {
+          highlighter: 'shiki',
+        },
         prerender: {
           routes: async () => [
             '/',
