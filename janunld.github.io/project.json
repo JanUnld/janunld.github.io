@@ -1,0 +1,57 @@
+{
+  "name": "janunld.github.io",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@analogjs/platform:vite",
+      "defaultConfiguration": "production",
+      "configurations": {
+        "development": {
+          "mode": "development"
+        },
+        "production": {
+          "sourcemap": false,
+          "mode": "production"
+        }
+      },
+      "outputs": [
+        "{options.outputPath}",
+        "{workspaceRoot}/dist/janunld.github.io/.nitro",
+        "{workspaceRoot}/dist/janunld.github.io/ssr",
+        "{workspaceRoot}/dist/janunld.github.io/analog"
+      ],
+      "options": {
+        "main": "janunld.github.io/src/main.ts",
+        "configFile": "janunld.github.io/vite.config.ts",
+        "outputPath": "dist/janunld.github.io/client",
+        "tsConfig": "janunld.github.io/tsconfig.app.json"
+      }
+    },
+    "serve": {
+      "executor": "@analogjs/platform:vite-dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "janunld.github.io:build",
+        "port": 4200
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "janunld.github.io:build:development",
+          "hmr": true
+        },
+        "production": {
+          "buildTarget": "janunld.github.io:build:production"
+        }
+      }
+    },
+    "test": {
+      "executor": "@analogjs/vitest-angular:test",
+      "outputs": [
+        "{projectRoot}/coverage"
+      ]
+    }
+  },
+  "tags": [],
+  "sourceRoot": "./janunld.github.io/src"
+}
