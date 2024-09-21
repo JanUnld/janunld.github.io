@@ -11,14 +11,5 @@
     &.active {
       @apply bg-neutral-200 dark:bg-neutral-800;
     }
-    &.disabled {
-      @apply text-neutral-400 dark:text-neutral-600;
-      @apply hover:bg-transparent;
-      @apply cursor-default;
-
-      & span {
-        @apply mr-2;
-      }
-    }
   }
 }

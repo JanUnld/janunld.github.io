@@ -12,8 +12,12 @@ import { NavComponent } from './components';
       <jun-nav></jun-nav>
     </header>
     <router-outlet></router-outlet>
-    <footer class="container text-xs text-neutral-500">
-      <p>© {{ copyrightYear }}</p>
+    <footer class="container">
+      <div>
+        made with <span class="text-red-500">♥</span> and
+        <a href="https://analogjs.org/">analog</a>
+      </div>
+      <div>© {{ copyrightYear }}</div>
     </footer>
   `,
 })

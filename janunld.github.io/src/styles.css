@@ -9,7 +9,7 @@ html, body {
 }
 
 .container {
-  @apply m-auto px-6;
+  @apply mx-auto px-6;
   @apply lg:w-1/2 md:w-3/4 sm:w-11/12;
 }
 
@@ -23,10 +23,6 @@ a {
   @apply underline decoration-2;
 }
 
-p {
-  @apply my-4;
-}
-
 .analog-markdown {
   @media (prefers-color-scheme: dark) {
     /* noinspection CssUnresolvedCustomProperty */
@@ -37,6 +33,9 @@ p {
     }
   }
 
+  p {
+    @apply my-4;
+  }
   & pre:has(code) {
     @apply block p-4 -mx-4;
     @apply overflow-x-auto;

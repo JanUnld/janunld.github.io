@@ -5,7 +5,8 @@
     @apply dark:border-neutral-800;
   }
   & footer.container {
-    @apply block my-10 mx-auto;
+    @apply flex items-center justify-between my-10 mx-auto py-4;
+    @apply text-xs text-neutral-500;
     @apply border-t-4 border-neutral-200;
     @apply dark:border-neutral-800;
   }

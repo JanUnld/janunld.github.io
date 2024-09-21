@@ -1,0 +1,4 @@
+:host {
+  @apply flex items-center;
+  @apply text-neutral-500;
+}

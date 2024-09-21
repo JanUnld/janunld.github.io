@@ -1,14 +1,17 @@
 import { ContentFile, injectContentFiles } from '@analogjs/content';
 import { DatePipe, NgFor } from '@angular/common';
-import { Component, isDevMode } from '@angular/core';
+import { Component, computed, effect, isDevMode, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { TagComponent } from '../../components';
+import { NoContentComponent, TagComponent } from '../../components';
 import { BlogPostAttributes } from '../../models';
 
-function isBlogPostAvailable(file: ContentFile<BlogPostAttributes>) {
+function shouldBlogPostPreviewBeVisible(
+  file: ContentFile<BlogPostAttributes>,
+  showDrafts = true,
+) {
   return (
     // Do not show draft blog posts in production
-    (isDevMode() || !file.attributes.draft) &&
+    ((isDevMode() && showDrafts) || !file.attributes.draft) &&
     file.filename.includes('/src/content/blog/')
   );
 }
@@ -16,10 +19,44 @@ function isBlogPostAvailable(file: ContentFile<BlogPostAttributes>) {
 @Component({
   selector: 'jun-blog',
   standalone: true,
-  imports: [RouterLink, NgFor, DatePipe, TagComponent],
+  imports: [RouterLink, NgFor, DatePipe, TagComponent, NoContentComponent],
   styleUrl: 'blog.page.css',
   template: `
-    @for (post of posts; track post.slug) {
+    @if (isDevMode) {
+      <div
+        class="container flex items-center justify-between mb-4 select-none text-sm"
+      >
+        <div class="flex items-center">
+          <i
+            class="text-lg iconoir-info-circle text-blue-600 dark:text-blue-400"
+          ></i>
+          <span class="ml-2 text-neutral-500">
+            Running in development mode
+          </span>
+        </div>
+        <div>
+          <label
+            class="cursor-pointer text-sm mr-2 flex items-center group"
+            for="blog-draft-toggle"
+          >
+            <span>{{ showDrafts() ? 'Hide' : 'Show' }} drafts</span>
+            <i
+              class="ml-2 text-lg text-neutral-500 group-hover:text-neutral-600 dark:group-hover:text-neutral-400 {{
+                showDrafts() ? 'iconoir-eye-closed' : 'iconoir-eye-solid'
+              }}"
+            ></i>
+          </label>
+          <input
+            (input)="showDrafts.set($event.target?.['checked'])"
+            [checked]="showDrafts()"
+            id="blog-draft-toggle"
+            type="checkbox"
+            hidden
+          />
+        </div>
+      </div>
+    }
+    @for (post of posts(); track post.slug) {
       <div class="blog-post-preview" [routerLink]="['/blog', post.slug]">
         <div class="container">
           <div class="blog-post-title">
@@ -42,8 +79,21 @@ function isBlogPostAvailable(file: ContentFile<BlogPostAttributes>) {
         </div>
       </div>
     }
+    @if (!posts().length) {
+      <div class="container">
+        <jun-no-content class="my-12"></jun-no-content>
+      </div>
+    }
   `,
 })
 export default class BlogComponent {
-  readonly posts = injectContentFiles<BlogPostAttributes>(isBlogPostAvailable);
+  private readonly _posts = injectContentFiles<BlogPostAttributes>();
+
+  readonly isDevMode = isDevMode();
+  readonly showDrafts = signal(true);
+  readonly posts = computed(() =>
+    this._posts.filter((post) =>
+      shouldBlogPostPreviewBeVisible(post, this.showDrafts()),
+    ),
+  );
 }
