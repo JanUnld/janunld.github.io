@@ -7,7 +7,9 @@
     "type": "git",
     "url": "git+https://github.com/JanUnld/janunld.github.io.git"
   },
-  "scripts": {},
+  "scripts": {
+    "build": "nx run janunld.github.io:build"
+  },
   "private": true,
   "dependencies": {
     "@analogjs/content": "^1.3.0",
