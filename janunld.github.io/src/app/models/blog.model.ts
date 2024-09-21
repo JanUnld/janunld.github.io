@@ -4,4 +4,6 @@ export interface BlogPostAttributes {
   slug: string;
   description: string;
   coverImage?: string;
+  date: string;
+  tags?: string[];
 }

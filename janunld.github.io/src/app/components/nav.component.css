@@ -1,0 +1,24 @@
+:host {
+  & nav {
+    @apply flex justify-center;
+  }
+
+  & a {
+    @apply flex items-center;
+    @apply px-4 py-2 no-underline;
+    @apply hover:bg-neutral-200 dark:hover:bg-neutral-800;
+
+    &.active {
+      @apply bg-neutral-200 dark:bg-neutral-800;
+    }
+    &.disabled {
+      @apply text-neutral-400 dark:text-neutral-600;
+      @apply hover:bg-transparent;
+      @apply cursor-default;
+
+      & span {
+        @apply mr-2;
+      }
+    }
+  }
+}

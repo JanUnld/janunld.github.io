@@ -1,0 +1,12 @@
+:host {
+  & header.container {
+    @apply block my-10 mx-auto;
+    @apply border-b-4 border-neutral-200;
+    @apply dark:border-neutral-800;
+  }
+  & footer.container {
+    @apply block my-10 mx-auto;
+    @apply border-t-4 border-neutral-200;
+    @apply dark:border-neutral-800;
+  }
+}

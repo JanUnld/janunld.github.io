@@ -1,0 +1,7 @@
+:host {
+  @apply flex flex-col items-stretch;
+}
+
+.blog-post-tags {
+  @apply my-7;
+}

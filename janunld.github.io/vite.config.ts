@@ -25,6 +25,14 @@ export default defineConfig(({ mode }) => {
         static: true,
         content: {
           highlighter: 'shiki',
+          shikiOptions: {
+            highlight: {
+              themes: {
+                dark: 'dark-plus',
+                light: 'light-plus',
+              },
+            },
+          },
         },
         prerender: {
           routes: async () => [
