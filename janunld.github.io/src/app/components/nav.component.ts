@@ -31,7 +31,7 @@ export class NavComponent {
   readonly links = input<NavLink[]>([
     { label: 'Bio', routerLink: '/', activeOptions: { exact: true } },
     { label: 'Blog', routerLink: '/blog' },
-    { label: 'Projects', routerLink: '/projects' },
-    { label: 'Art', routerLink: '/art' },
+    // { label: 'Projects', routerLink: '/projects' },
+    // { label: 'Art', routerLink: '/art' },
   ]);
 }

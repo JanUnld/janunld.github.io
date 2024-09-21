@@ -1,3 +1,5 @@
 Hi, I'm **Jan** 👋
 
-A **software engineer** located in Germany. I'm passionate about web development and open source. I'm currently working at [Novatec Consulting GmbH](https://www.novatec-gmbh.de/) as **frontend engineer**. I've more than **8 years of experience** and always looking for opportunities to learn new things.
+a self-taught **software engineer** with more than **8 years of professional experience**, living in Germany. 
+
+I'm passionate about web development, programming and complexity in general. When there's time left I also enjoy doing **design and art stuff**.

@@ -24,16 +24,8 @@ function shouldBlogPostPreviewBeVisible(
   template: `
     @if (isDevMode) {
       <div
-        class="container flex items-center justify-between mb-4 select-none text-sm"
+        class="container flex items-center justify-end mb-4 select-none text-sm"
       >
-        <div class="flex items-center">
-          <i
-            class="text-lg iconoir-info-circle text-blue-600 dark:text-blue-400"
-          ></i>
-          <span class="ml-2 text-neutral-500">
-            Running in development mode
-          </span>
-        </div>
         <div>
           <label
             class="cursor-pointer text-sm mr-2 flex items-center group"

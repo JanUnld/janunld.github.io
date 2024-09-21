@@ -1,13 +1,25 @@
-import { Component } from '@angular/core';
+import { Component, isDevMode } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { NavComponent } from './components';
+import { NavComponent, SocialsComponent } from './components';
 
 @Component({
   selector: 'jun-root',
   standalone: true,
-  imports: [RouterOutlet, NavComponent],
+  imports: [RouterOutlet, NavComponent, SocialsComponent],
   styleUrl: 'app.component.css',
   template: `
+    @if (isDevMode) {
+      <div class="py-4 bg-blue-100 dark:bg-blue-950">
+        <div class="container flex items-center text-sm">
+          <i
+            class="text-lg iconoir-info-circle-solid text-blue-800 dark:text-blue-200"
+          ></i>
+          <span class="ml-2 text-blue-600 dark:text-blue-400">
+            Running in development mode
+          </span>
+        </div>
+      </div>
+    }
     <header class="container">
       <jun-nav></jun-nav>
     </header>
@@ -15,12 +27,14 @@ import { NavComponent } from './components';
     <footer class="container">
       <div>
         made with <span class="text-red-500">♥</span> and
-        <a href="https://analogjs.org/">analog</a>
+        <a href="https://analogjs.org/" target="_blank">analog</a>
       </div>
       <div>© {{ copyrightYear }}</div>
+      <jun-socials></jun-socials>
     </footer>
   `,
 })
 export class AppComponent {
+  readonly isDevMode = isDevMode();
   readonly copyrightYear = new Date().getFullYear();
 }
