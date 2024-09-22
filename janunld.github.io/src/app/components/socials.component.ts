@@ -15,7 +15,7 @@ export type SocialLink = {
           [href]="link.href"
           target="_blank"
           rel="noopener noreferrer"
-          class="ml-2"
+          class="ml-2 px-2"
         >
           <i class="{{ link.icon }}"></i>
         </a>

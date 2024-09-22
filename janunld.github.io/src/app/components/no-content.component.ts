@@ -13,8 +13,7 @@ import { Component } from '@angular/core';
         Nothing here yet
       </h1>
       <p class="text-lg">
-        It seems that there's no content, make sure to check back soon, while
-        I'm working on it.
+        It seems that there's no content. I'm probably working on some.
       </p>
     </div>
   `,

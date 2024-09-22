@@ -14,6 +14,8 @@ tags:
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
+> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+
 ```typescript
 const foo = 'bar';
 ```
