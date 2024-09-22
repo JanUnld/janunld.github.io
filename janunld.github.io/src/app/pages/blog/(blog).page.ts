@@ -16,6 +16,13 @@ function shouldBlogPostPreviewBeVisible(
   );
 }
 
+function compareBlogPostDates(
+  a: ContentFile<BlogPostAttributes>,
+  b: ContentFile<BlogPostAttributes>,
+) {
+  return Date.parse(b.attributes.date) - Date.parse(a.attributes.date);
+}
+
 @Component({
   selector: 'jun-blog',
   standalone: true,
@@ -84,8 +91,8 @@ export default class BlogComponent {
   readonly isDevMode = isDevMode();
   readonly showDrafts = signal(true);
   readonly posts = computed(() =>
-    this._posts.filter((post) =>
-      shouldBlogPostPreviewBeVisible(post, this.showDrafts()),
-    ),
+    this._posts
+      .filter((post) => shouldBlogPostPreviewBeVisible(post, this.showDrafts()))
+      .sort(compareBlogPostDates),
   );
 }
