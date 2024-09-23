@@ -18,6 +18,7 @@ export interface Experience {
   title: string;
   startDate: string;
   endDate?: string;
+  description?: string;
 }
 
 @Component({
@@ -68,12 +69,12 @@ export interface Experience {
                 class="h-1.5 w-1.5 rounded my-2 -ml-0.5 bg-neutral-600 dark:bg-neutral-400"
               ></div>
               <div
-                class="h-7 border-l-2 group-last:border-transparent border-neutral-300 dark:border-neutral-700"
+                class="grow border-l-2 group-last:border-transparent border-neutral-300 dark:border-neutral-700"
               ></div>
             </div>
-            <div>
+            <div class="my-3">
               <div>{{ position.title }}</div>
-              <div class="mt-1 text-xs text-neutral-400 dark:text-neutral-600">
+              <div class="inline-block mt-1 me-2 text-xs text-neutral-500">
                 <span>{{ position.startDate | date: dateFormat() }}</span>
                 <span class="mx-1">&dash;</span>
                 @if (position.endDate) {
@@ -82,6 +83,13 @@ export interface Experience {
                   <span>now</span>
                 }
               </div>
+              @if (position.description) {
+                <div
+                  class="inline-block text-xs text-neutral-400 dark:text-neutral-600"
+                >
+                  <span>{{ position.description }}</span>
+                </div>
+              }
             </div>
           </div>
         }
@@ -130,30 +138,35 @@ export class ExperienceComponent {
       title: 'Senior Software Engineer',
       startDate: '2024-01-01',
       companyId: 'nt',
+      description: 'full-time',
     },
     {
       title: 'Software Engineer',
       startDate: '2023-07-01',
       endDate: '2024-01-01',
       companyId: 'nt',
+      description: 'full-time',
     },
     {
       title: 'Frontend Engineer',
       startDate: '2019-01-01',
       endDate: '2023-07-01',
       companyId: 'vg',
+      description: 'full-time',
     },
     {
       title: 'Software Developer',
       startDate: '2016-06-01',
       endDate: '2018-12-31',
       companyId: 'mgs',
+      description: 'full-time',
     },
     {
       title: 'Software Developer',
       startDate: '2017-06-01',
       endDate: '2015-06-01',
       companyId: 'mgs',
+      description: 'full-time, apprenticeship',
     },
   ]);
 
