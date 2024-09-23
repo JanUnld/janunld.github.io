@@ -1,3 +1,4 @@
+export * from './experience.component';
 export * from './header.component';
 export * from './nav.component';
 export * from './no-content.component';

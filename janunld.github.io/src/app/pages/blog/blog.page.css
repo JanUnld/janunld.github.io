@@ -6,7 +6,6 @@
   @apply block py-4;
   @apply hover:text-emerald-600 hover:bg-neutral-200;
   @apply dark:hover:text-emerald-400 dark:hover:bg-neutral-800;
-  @apply transition-colors ease-in-out duration-75;
   @apply cursor-pointer;
 
   &:not(:last-of-type) {
