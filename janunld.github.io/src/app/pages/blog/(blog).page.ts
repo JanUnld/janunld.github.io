@@ -2,8 +2,8 @@ import { ContentFile, injectContentFiles } from '@analogjs/content';
 import { DatePipe, NgFor } from '@angular/common';
 import { Component, computed, effect, isDevMode, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { NoContentComponent, TagComponent } from '../../components';
-import { BlogPostAttributes } from '../../models';
+import { NoContent, Tag } from '../../components';
+import { BlogPostAttributes } from './blog-models';
 
 function shouldBlogPostPreviewBeVisible(
   file: ContentFile<BlogPostAttributes>,
@@ -26,7 +26,7 @@ function compareBlogPostDates(
 @Component({
   selector: 'jun-blog',
   standalone: true,
-  imports: [RouterLink, NgFor, DatePipe, TagComponent, NoContentComponent],
+  imports: [RouterLink, DatePipe, Tag, NoContent],
   styleUrl: 'blog.page.css',
   template: `
     @if (isDevMode) {
@@ -46,7 +46,7 @@ function compareBlogPostDates(
             ></i>
           </label>
           <input
-            (input)="showDrafts.set($event.target?.['checked'])"
+            (input)="showDrafts.set($any($event.target)?.checked)"
             [checked]="showDrafts()"
             id="blog-draft-toggle"
             type="checkbox"

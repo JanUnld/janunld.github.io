@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'jun-no-content',
   standalone: true,
-  styleUrl: './no-content.component.css',
+  styleUrl: './no-content.css',
   template: `
     <div class="mr-6 text-neutral-300 dark:text-neutral-700">
       <i class="iconoir-yoga text-5xl"></i>
@@ -18,4 +18,4 @@ import { Component } from '@angular/core';
     </div>
   `,
 })
-export class NoContentComponent {}
+export class NoContent {}

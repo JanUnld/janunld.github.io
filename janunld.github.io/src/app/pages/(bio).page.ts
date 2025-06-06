@@ -2,13 +2,13 @@ import { injectContent, MarkdownComponent } from '@analogjs/content';
 import { AsyncPipe, JsonPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { GITHUB_USER } from '../common';
-import { ExperienceComponent } from '../components';
+import { ExperienceHistory } from '../components';
 
 // noinspection AngularInvalidImportedOrDeclaredSymbol
 @Component({
   selector: 'jun-bio',
   standalone: true,
-  imports: [MarkdownComponent, AsyncPipe, ExperienceComponent],
+  imports: [MarkdownComponent, AsyncPipe, ExperienceHistory],
   template: `
     <div class="container">
       @if (bio$ | async; as bio) {

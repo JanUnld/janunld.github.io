@@ -1,0 +1,42 @@
+:host {
+  @apply relative inline-block;
+
+  .pulse {
+    @apply absolute inline-flex h-full w-full rounded-full;
+    @apply animate-ping opacity-50;
+  }
+  .pill {
+    @apply px-2 py-1;
+    @apply overflow-hidden overflow-ellipsis whitespace-nowrap;
+    @apply text-xs font-semibold rounded-full;
+    @apply relative inline-flex;
+  }
+
+  .pulse, .pill {
+    @apply bg-emerald-300 dark:bg-emerald-900;
+    @apply text-emerald-900 dark:text-emerald-100;
+  }
+
+  &:not(:last-child) {
+    @apply mr-1;
+  }
+
+  &[variant='muted'] {
+    .pulse, .pill {
+      @apply bg-neutral-200 dark:bg-neutral-800;
+      @apply text-neutral-900 dark:text-neutral-100;
+    }
+  }
+  &[variant='warning'] {
+    .pulse, .pill {
+      @apply bg-amber-200 dark:bg-amber-900;
+      @apply text-amber-900 dark:text-amber-100;
+    }
+  }
+  &[variant='error'] {
+    .pulse, .pill {
+      @apply bg-red-200 dark:bg-red-900;
+      @apply text-red-900 dark:text-red-100;
+    }
+  }
+}

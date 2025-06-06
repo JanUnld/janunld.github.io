@@ -1,6 +1,6 @@
 import { Component, input } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { TagComponent } from './tag.component';
+import { Tag } from '../tag/tag';
 
 export interface NavLink {
   activeOptions?: RouterLinkActive['routerLinkActiveOptions'];
@@ -11,8 +11,8 @@ export interface NavLink {
 @Component({
   selector: 'jun-nav',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive, TagComponent],
-  styleUrl: 'nav.component.css',
+  imports: [RouterLink, RouterLinkActive, Tag],
+  styleUrl: 'nav.css',
   template: `
     <nav>
       @for (link of links(); track link.routerLink) {
@@ -27,7 +27,7 @@ export interface NavLink {
     </nav>
   `,
 })
-export class NavComponent {
+export class Nav {
   readonly links = input<NavLink[]>([
     { label: 'Bio', routerLink: '/', activeOptions: { exact: true } },
     { label: 'Blog', routerLink: '/blog' },

@@ -1,26 +1,9 @@
 import { DatePipe } from '@angular/common';
 import { Component, computed, inject, input } from '@angular/core';
-import { COLOR_SCHEME } from '../common';
-
-export interface Company {
-  readonly id: string;
-  displayName: string;
-  type: 'GmbH' | 'AG' | string;
-  logoSrc: {
-    default: string;
-    dark: string;
-  };
-  hideDisplayName?: boolean;
-  href: string;
-}
-
-export interface Experience {
-  readonly companyId: string;
-  title: string;
-  startDate: string;
-  endDate?: string;
-  description?: string;
-}
+import { COLOR_SCHEME } from '../../common';
+import { Tag } from '../tag/tag';
+import { COMPANIES, EXPERIENCE } from './data';
+import { Company, Experience } from './models';
 
 @Component({
   selector: 'jun-experience',
@@ -31,7 +14,7 @@ export interface Experience {
         <div class="flex items-center justify-between mb-2">
           <a
             class="flex items-center select-none no-style"
-            [href]="experience.company.href"
+            [href]="experience.company.website"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -40,7 +23,7 @@ export interface Experience {
               [src]="
                 isDarkMode()
                   ? experience.company.logoSrc.dark
-                  : experience.company.logoSrc.default
+                  : experience.company.logoSrc.auto
               "
               alt="{{ experience.company.displayName }} logo image"
             />
@@ -55,15 +38,14 @@ export interface Experience {
               {{ experience.company.type }}
             </span>
           </a>
-          <a
-            class="ml-4 text-sm flex items-center decoration-1 max-sm:hidden"
-            [href]="experience.company.href"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <span>{{ experience.company.displayName }}</span>
-            <i class="iconoir-arrow-up-right-square ml-1"></i>
-          </a>
+          @if (isActiveCompany(experience.positions)) {
+            <jun-tag
+              class="ml-4 text-sm flex items-center decoration-1 max-sm:hidden cursor-default"
+              [pulse]="true"
+            >
+              active
+            </jun-tag>
+          }
         </div>
         @for (position of experience.positions; track $index) {
           <div class="group flex items-center">
@@ -74,8 +56,12 @@ export interface Experience {
               <div
                 class="h-1.5 w-1.5 rounded my-2 -ml-0.5 bg-neutral-600 dark:bg-neutral-400"
               ></div>
+              @let didAcquire = didAcquireCompany(position.companyId);
               <div
-                class="grow border-l-2 group-last:border-transparent border-neutral-300 dark:border-neutral-700"
+                class="grow border-l-2 border-neutral-300 dark:border-neutral-700"
+                [class.-mb-5]="didAcquire"
+                [class.border-dashed]="didAcquire"
+                [class.group-last:border-transparent]="!didAcquire"
               ></div>
             </div>
             <div class="my-3">
@@ -92,7 +78,7 @@ export interface Experience {
                   &centerdot;
                 </span>
               </div>
-              @if (getDuration(position); as duration) {
+              @if (getDurationFromExperience(position); as duration) {
                 <div
                   class="inline-block text-xs text-neutral-400 dark:text-neutral-600"
                 >
@@ -106,15 +92,15 @@ export interface Experience {
                       duration.months ? duration.months + 'm' : ''
                     }}</span>
                   }
-                  <span class="mx-2 text-neutral-400 dark:text-neutral-600"
-                    >&centerdot;</span
-                  >
                 </div>
               }
               @if (position.description) {
                 <div
                   class="inline-block text-xs text-neutral-400 dark:text-neutral-600"
                 >
+                  <span class="mx-2 text-neutral-400 dark:text-neutral-600">
+                    &centerdot;
+                  </span>
                   <span>{{ position.description }}</span>
                 </div>
               }
@@ -124,117 +110,58 @@ export interface Experience {
       </div>
     }
   `,
-  imports: [DatePipe],
+  imports: [DatePipe, Tag],
 })
-export class ExperienceComponent {
+export class ExperienceHistory {
   readonly colorScheme = inject(COLOR_SCHEME);
 
-  readonly dateFormat = input('MMMM yyyy');
-  readonly companies = input<Company[]>([
-    {
-      id: 'nt',
-      displayName: 'Novatec Consulting',
-      href: 'https://www.novatec-gmbh.de/',
-      logoSrc: {
-        default: '/img/novatec.svg',
-        dark: '/img/novatec-dark.svg',
-      },
-      hideDisplayName: true,
-      type: 'GmbH',
-    },
-    {
-      id: 'vg',
-      displayName: 'vitagroup',
-      href: 'https://www.vitagroup.ag/',
-      logoSrc: {
-        default: '/img/vitagroup.svg',
-        dark: '/img/vitagroup-dark.svg',
-      },
-      hideDisplayName: true,
-      type: 'AG',
-    },
-    {
-      id: 'mgs',
-      displayName: 'mg.softech',
-      href: 'https://www.mgsoftech.de/',
-      logoSrc: {
-        default: '/img/mgsoftech.svg',
-        dark: '/img/mgsoftech-dark.svg',
-      },
-      type: 'GmbH',
-    },
-  ]);
-  readonly experiences = input<Experience[]>([
-    {
-      title: 'Senior Software Engineer',
-      startDate: '2024-01-01',
-      companyId: 'nt',
-      description: 'full-time',
-    },
-    {
-      title: 'Software Engineer',
-      startDate: '2023-07-01',
-      endDate: '2024-01-01',
-      companyId: 'nt',
-      description: 'full-time',
-    },
-    {
-      title: 'Frontend Engineer',
-      startDate: '2019-01-01',
-      endDate: '2023-07-01',
-      companyId: 'vg',
-      description: 'full-time',
-    },
-    {
-      title: 'Software Developer',
-      startDate: '2017-06-01',
-      endDate: '2018-12-31',
-      companyId: 'mgs',
-      description: 'full-time',
-    },
-    {
-      title: 'Software Developer',
-      startDate: '2015-06-01',
-      endDate: '2017-06-01',
-      companyId: 'mgs',
-      description: 'full-time, apprenticeship',
-    },
-  ]);
-
-  readonly isDarkMode = computed(() => this.colorScheme() === 'dark');
+  readonly companies = input<Company[]>(COMPANIES);
+  readonly experience = input<Experience[]>(EXPERIENCE);
   readonly experienceByCompany = computed(() =>
     this.companies().map((company) => ({
       company,
-      positions: this.experiences().filter(
+      positions: this.experience().filter(
         (experience) => experience.companyId === company.id,
       ),
     })),
   );
 
-  getDuration({ startDate, endDate }: Experience) {
+  readonly dateFormat = input('MMMM yyyy');
+  readonly isDarkMode = computed(() => this.colorScheme() === 'dark');
+
+  getDurationFromExperience({ startDate, endDate }: Experience) {
     const start = new Date(startDate);
     const end = endDate ? new Date(endDate) : new Date();
 
     const isSameYear = end.getFullYear() === start.getFullYear();
 
-    const startMonths = 11 - start.getMonth();
-    const endMonths = end.getMonth();
+    const startMonthsToNextYear = 11 - start.getMonth();
+    const endMonthsFromLastYear = end.getMonth();
     const inBetweenMonths =
       Math.max(end.getFullYear() - start.getFullYear() - 1, 0) * 11;
-    let fullMonths = 0;
+    let allMonthsSum = 0;
 
     if (inBetweenMonths > 0 || !isSameYear) {
-      fullMonths = startMonths + inBetweenMonths + endMonths;
+      allMonthsSum =
+        startMonthsToNextYear + inBetweenMonths + endMonthsFromLastYear;
     } else {
-      fullMonths = endMonths;
+      allMonthsSum = isSameYear ? 1 : endMonthsFromLastYear;
     }
 
-    const years = Math.floor(fullMonths / 11);
-    const months = fullMonths % 11;
+    const years = Math.floor(allMonthsSum / 11);
+    const months = allMonthsSum % 11;
 
     return {
       years,
       months,
     };
+  }
+
+  didAcquireCompany(companyId: string) {
+    return this.companies().some((company) => company.acquiredBy === companyId);
+  }
+
+  isActiveCompany(positions: Experience[]) {
+    return positions.some((position) => !position.endDate);
   }
 }

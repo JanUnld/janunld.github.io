@@ -1,11 +1,11 @@
 import { Component, isDevMode } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { NavComponent, SocialsComponent } from './components';
+import { Nav, SocialLinks } from './components';
 
 @Component({
   selector: 'jun-root',
   standalone: true,
-  imports: [RouterOutlet, NavComponent, SocialsComponent],
+  imports: [RouterOutlet, Nav, SocialLinks],
   styleUrl: 'app.component.css',
   template: `
     @if (isDevMode) {
@@ -29,7 +29,7 @@ import { NavComponent, SocialsComponent } from './components';
         made with <span class="text-red-500">♥</span> and
         <a href="https://analogjs.org/" target="_blank">analog</a>
       </div>
-      <jun-socials></jun-socials>
+      <jun-social-links></jun-social-links>
     </footer>
   `,
 })

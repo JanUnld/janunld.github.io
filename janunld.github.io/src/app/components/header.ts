@@ -5,4 +5,4 @@ import { Component } from '@angular/core';
   standalone: true,
   template: ` <header></header> `,
 })
-export class HeaderComponent {}
+export class Header {}

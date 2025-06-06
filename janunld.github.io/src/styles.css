@@ -6,6 +6,7 @@ html, body {
   @apply block;
   @apply bg-neutral-100 text-black text-lg;
   @apply dark:bg-neutral-900 dark:text-white;
+  @apply selection:bg-blue-700 selection:text-white;
 }
 
 .container {
@@ -63,21 +64,30 @@ a:not(.no-style) {
     @apply text-neutral-500;
     @apply border-l-8 border-neutral-400 dark:border-neutral-600;
   }
+  & code {
+    @apply text-sm bg-white dark:bg-neutral-800;
+    @apply px-1.5 py-0.5 rounded;
+  }
   & pre:has(code) {
-    @apply block p-4 -mx-4;
+    @apply block p-4 -mx-4 rounded;
     @apply text-sm overflow-x-auto;
+
+    & code {
+      @apply bg-transparent p-0;
+    }
   }
   & ul, & ol {
-    @apply my-4;
-    @apply list-disc list-inside;
+    @apply my-4 pl-4;
 
     & li {
-      @apply my-2;
+      @apply my-2 list-item marker:text-neutral-500;
     }
     & ul, & ol {
-      @apply ms-8 my-2;
+      @apply ms-4 my-2;
     }
   }
+  & ol { @apply list-decimal }
+  & ul { @apply list-disc }
   & hr {
     @apply my-6 border-t-2 border-neutral-300 dark:border-neutral-700;
   }

@@ -6,7 +6,7 @@ export type SocialLink = {
 };
 
 @Component({
-  selector: 'jun-socials',
+  selector: 'jun-social-links',
   standalone: true,
   template: `
     <div class="flex items-center text-2xl">
@@ -23,7 +23,7 @@ export type SocialLink = {
     </div>
   `,
 })
-export class SocialsComponent {
+export class SocialLinks {
   readonly links = input<SocialLink[]>([
     { icon: 'iconoir-github', href: 'https://github.com/JanUnld' },
     { icon: 'iconoir-linkedin', href: 'https://www.linkedin.com/in/janunld/' },

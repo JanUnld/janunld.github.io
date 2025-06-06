@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { NoContentComponent } from '../../components';
+import { NoContent } from '../../components';
 
 @Component({
   selector: 'jun-art',
   standalone: true,
-  imports: [NoContentComponent],
+  imports: [NoContent],
   template: `
     <div class="container">
       <jun-no-content class="my-12"></jun-no-content>
