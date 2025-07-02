@@ -27,6 +27,7 @@
   & .blog-post-date {
     @apply text-sm text-neutral-500;
   }
+
   & .blog-post-tags {
     @apply mt-2;
   }

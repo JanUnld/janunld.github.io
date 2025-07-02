@@ -1,15 +1,15 @@
 import { injectContent, MarkdownComponent } from '@analogjs/content';
-import { AsyncPipe, DatePipe, NgIf } from '@angular/common';
+import { AsyncPipe, DatePipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { Tag } from '../../components';
-import { BlogPostAttributes } from './blog-models';
+import { BlogPostAttributes } from './models';
 
 // noinspection AngularInvalidImportedOrDeclaredSymbol,HtmlUnknownTag
 @Component({
   selector: 'jun-blog-post',
   standalone: true,
-  imports: [MarkdownComponent, AsyncPipe, NgIf, Tag, DatePipe],
-  styleUrl: 'blog-post.page.css',
+  imports: [MarkdownComponent, AsyncPipe, Tag, DatePipe],
+  styleUrl: 'blog-post.css',
   template: `
     @if (post$ | async; as post) {
       <div class="container flex items-center justify-between">

@@ -33,12 +33,15 @@ a:not(.no-style) {
   h1, h2, h3, h4, h5, h6 {
     @apply font-bold mt-8 mb-4;
   }
+
   h1 {
     @apply text-3xl py-4;
   }
+
   h2 {
     @apply text-2xl py-3;
   }
+
   h1, h2 {
     @apply border-b-2 border-neutral-300 dark:border-neutral-700;
   }
@@ -46,12 +49,15 @@ a:not(.no-style) {
   h3 {
     @apply text-xl;
   }
+
   h4 {
     @apply text-lg;
   }
+
   h5 {
     @apply text-base;
   }
+
   h6 {
     @apply text-sm text-neutral-500;
   }
@@ -59,15 +65,18 @@ a:not(.no-style) {
   & p {
     @apply my-4;
   }
+
   & blockquote {
     @apply my-8 -mx-4 px-6;
     @apply text-neutral-500;
     @apply border-l-8 border-neutral-400 dark:border-neutral-600;
   }
+
   & code {
     @apply text-sm bg-white dark:bg-neutral-800;
     @apply px-1.5 py-0.5 rounded;
   }
+
   & pre:has(code) {
     @apply block p-4 -mx-4 rounded;
     @apply text-sm overflow-x-auto;
@@ -76,18 +85,27 @@ a:not(.no-style) {
       @apply bg-transparent p-0;
     }
   }
+
   & ul, & ol {
     @apply my-4 pl-4;
 
     & li {
       @apply my-2 list-item marker:text-neutral-500;
     }
+
     & ul, & ol {
       @apply ms-4 my-2;
     }
   }
-  & ol { @apply list-decimal }
-  & ul { @apply list-disc }
+
+  & ol {
+    @apply list-decimal
+  }
+
+  & ul {
+    @apply list-disc
+  }
+
   & hr {
     @apply my-6 border-t-2 border-neutral-300 dark:border-neutral-700;
   }

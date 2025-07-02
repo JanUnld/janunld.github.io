@@ -1,7 +1,6 @@
 import {
   APP_INITIALIZER,
   EnvironmentProviders,
-  inject,
   InjectionToken,
   makeEnvironmentProviders,
   Signal,

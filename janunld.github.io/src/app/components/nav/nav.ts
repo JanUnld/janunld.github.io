@@ -1,6 +1,5 @@
 import { Component, input } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { Tag } from '../tag/tag';
 
 export interface NavLink {
   activeOptions?: RouterLinkActive['routerLinkActiveOptions'];
@@ -11,7 +10,7 @@ export interface NavLink {
 @Component({
   selector: 'jun-nav',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive, Tag],
+  imports: [RouterLink, RouterLinkActive],
   styleUrl: 'nav.css',
   template: `
     <nav>

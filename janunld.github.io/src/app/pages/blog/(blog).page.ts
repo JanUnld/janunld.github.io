@@ -1,9 +1,9 @@
 import { ContentFile, injectContentFiles } from '@analogjs/content';
-import { DatePipe, NgFor } from '@angular/common';
-import { Component, computed, effect, isDevMode, signal } from '@angular/core';
+import { DatePipe } from '@angular/common';
+import { Component, computed, isDevMode, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { NoContent, Tag } from '../../components';
-import { BlogPostAttributes } from './blog-models';
+import { BlogPostAttributes } from './models';
 
 function shouldBlogPostPreviewBeVisible(
   file: ContentFile<BlogPostAttributes>,
@@ -27,7 +27,7 @@ function compareBlogPostDates(
   selector: 'jun-blog',
   standalone: true,
   imports: [RouterLink, DatePipe, Tag, NoContent],
-  styleUrl: 'blog.page.css',
+  styleUrl: 'blog.css',
   template: `
     @if (isDevMode) {
       <div

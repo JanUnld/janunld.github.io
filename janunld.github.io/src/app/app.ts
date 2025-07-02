@@ -6,7 +6,7 @@ import { Nav, SocialLinks } from './components';
   selector: 'jun-root',
   standalone: true,
   imports: [RouterOutlet, Nav, SocialLinks],
-  styleUrl: 'app.component.css',
+  styleUrl: 'app.css',
   template: `
     @if (isDevMode) {
       <div class="py-4 bg-blue-100 dark:bg-blue-950">
@@ -33,6 +33,6 @@ import { Nav, SocialLinks } from './components';
     </footer>
   `,
 })
-export class AppComponent {
+export class App {
   readonly isDevMode = isDevMode();
 }

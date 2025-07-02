@@ -1,7 +1,6 @@
 import { injectContent, MarkdownComponent } from '@analogjs/content';
-import { AsyncPipe, JsonPipe } from '@angular/common';
-import { Component, inject } from '@angular/core';
-import { GITHUB_USER } from '../common';
+import { AsyncPipe } from '@angular/common';
+import { Component } from '@angular/core';
 import { ExperienceHistory } from '../components';
 
 // noinspection AngularInvalidImportedOrDeclaredSymbol
